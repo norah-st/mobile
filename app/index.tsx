@@ -1,7 +1,7 @@
 import { Order } from "@/components/Order";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
+import { FlatList, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 
 const DATA = [
 	{
@@ -19,37 +19,37 @@ const DATA = [
 		title: 'Third Item',
 		description: 'Description',
 	},
-		{
+	{
 		id: '58694a0f-3da1-471f-bd96-145571e29d73',
 		title: 'Third Item',
 		description: 'Description',
 	},
-		{
+	{
 		id: '58694a0f-3da1-471f-bd96-145571e29d472',
 		title: 'Third Item',
 		description: 'Description',
 	},
-		{
+	{
 		id: '58694a0f-3da1-471f-bd96-145571e29d752',
 		title: 'Third Item',
 		description: 'Description',
 	},
-		{
+	{
 		id: '58694a0f-3da1-471f-bd96-145571e29443d72',
 		title: 'Third Item',
 		description: 'Description',
 	},
-		{
+	{
 		id: '58694a0f-3da1-471f-bd96-145571e29754d72',
 		title: 'Third Item',
 		description: 'Description',
 	},
-		{
+	{
 		id: '58694a0f-3da1-471f-bd96-243145571e29d72',
 		title: 'Third Item',
 		description: 'Description',
 	},
-		{
+	{
 		id: '58694a0f-3da1-471f-bd96-123445571e29d72',
 		title: 'Third Item',
 		description: 'Description',
@@ -60,10 +60,21 @@ export default function Index() {
 	const router = useRouter();
 	const [search, onChangeSearch] = useState('')
 
+	const DATA_FILTERED = DATA.filter(post =>
+		post.title.toLowerCase().includes(search.toLowerCase()),
+	);
+
 	return (
 		<View style={styles.container}>
+			<TextInput
+				value={search}
+				onChangeText={onChangeSearch}
+				style={styles.input}
+				placeholder="Search"
+			/>
+
 			<FlatList
-				data={DATA}
+				data={DATA_FILTERED}
 				renderItem={({ item }) => <Order id={item.id} title={item.title} description={item.description} />}
 				keyExtractor={item => item.id}
 			/>
@@ -101,5 +112,11 @@ const styles = StyleSheet.create({
 	},
 	title: {
 		fontSize: 32,
+	},
+	input: {
+		height: 40,
+		marginTop: 6,
+		borderWidth: 1,
+		padding: 10,
 	},
 });
