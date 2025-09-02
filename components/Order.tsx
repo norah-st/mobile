@@ -1,27 +1,39 @@
+import { router } from "expo-router";
 import { PropsWithChildren } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
-export function Order({ children, title, description }: PropsWithChildren & { title: string, description: string }) {
+export function Order({ children, id, title, description }: PropsWithChildren & { id: string, title: string, description: string }) {
 	return (
-		<View style={styles.item}>
-			<Text style={styles.title}>{title}</Text>
-			<Text>{description}</Text>
+		<View style={styles.container}>
+			<Pressable
+				style={({ pressed }) => [
+					{
+						backgroundColor: pressed ? 'white' : '#f9c2ff',
+					},
+					styles.item
+				]}
+				onPress={() => router.navigate(`/details/${id}`)}>
+				<Text style={styles.title}>{title}</Text>
+				<Text>{description}</Text>
+			</Pressable>
 		</View>
 	);
 }
 
 
 const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		marginVertical: 8,
+		marginHorizontal: 16
+	},
 	item: {
 		flex: 1,
-		backgroundColor: '#f9c2ff',
 		padding: 20,
-		marginVertical: 8,
-		marginHorizontal: 16,
 		borderRadius: 24
 	},
 	title: {
 		fontWeight: 'bold',
 		fontSize: 20
-	}
+	},
 });

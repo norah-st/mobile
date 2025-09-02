@@ -1,5 +1,6 @@
 import { Order } from "@/components/Order";
 import { useRouter } from "expo-router";
+import { useState } from "react";
 import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 
 const DATA = [
@@ -14,7 +15,42 @@ const DATA = [
 		description: 'Sed quis consequuntur ab iusto quia est ex. Quo ea et vitae facilis sit est dolorum. Eveniet molestias enim occaecati saepe sit inventore laudantium. Molestiae porro voluptatem aut molestias porro nihil nisi.',
 	},
 	{
-		id: '58694a0f-3da1-471f-bd96-145571e29d72',
+		id: '58694a0f-3da1-471f-bd96-145571e29d71',
+		title: 'Third Item',
+		description: 'Description',
+	},
+		{
+		id: '58694a0f-3da1-471f-bd96-145571e29d73',
+		title: 'Third Item',
+		description: 'Description',
+	},
+		{
+		id: '58694a0f-3da1-471f-bd96-145571e29d472',
+		title: 'Third Item',
+		description: 'Description',
+	},
+		{
+		id: '58694a0f-3da1-471f-bd96-145571e29d752',
+		title: 'Third Item',
+		description: 'Description',
+	},
+		{
+		id: '58694a0f-3da1-471f-bd96-145571e29443d72',
+		title: 'Third Item',
+		description: 'Description',
+	},
+		{
+		id: '58694a0f-3da1-471f-bd96-145571e29754d72',
+		title: 'Third Item',
+		description: 'Description',
+	},
+		{
+		id: '58694a0f-3da1-471f-bd96-243145571e29d72',
+		title: 'Third Item',
+		description: 'Description',
+	},
+		{
+		id: '58694a0f-3da1-471f-bd96-123445571e29d72',
 		title: 'Third Item',
 		description: 'Description',
 	},
@@ -22,11 +58,13 @@ const DATA = [
 
 export default function Index() {
 	const router = useRouter();
+	const [search, onChangeSearch] = useState('')
+
 	return (
 		<View style={styles.container}>
 			<FlatList
 				data={DATA}
-				renderItem={({ item }) => <Order title={item.title} description={item.description} />}
+				renderItem={({ item }) => <Order id={item.id} title={item.title} description={item.description} />}
 				keyExtractor={item => item.id}
 			/>
 

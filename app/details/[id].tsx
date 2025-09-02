@@ -1,9 +1,16 @@
+import { Stack, useLocalSearchParams } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function DetailsScreen() {
+	const { id } = useLocalSearchParams();
+
 	return (
 		<View style={styles.container}>
-			<Text>Details</Text>
+			<Stack.Screen
+				options={{
+					title: `${id}`
+				}} />
+			<Text>Details for {id}</Text>
 		</View>
 	);
 }

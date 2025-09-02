@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function CreateScreen() {
     const [title, onChangeTitle] = useState('')
@@ -22,6 +22,17 @@ export default function CreateScreen() {
                 value={description}
                 placeholder="Description of the order"
             />
+
+            <Pressable
+                style={({ pressed }) => [
+                    {
+                        backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+                    },
+                    styles.pressable
+                ]}
+                onPress={() => console.log("Create")}>
+                <Text style={styles.pressableText}>Create</Text>
+            </Pressable>
         </View>
     );
 }
@@ -44,5 +55,16 @@ const styles = StyleSheet.create({
         marginTop: 6,
         borderWidth: 1,
         padding: 10,
-    }
+    },
+    pressable: {
+        marginTop: 10,
+        marginBottom: 36,
+        alignItems: 'center',
+        padding: 10,
+        borderRadius: 20
+    },
+    pressableText: {
+        fontWeight: 'bold',
+        fontSize: 20
+    },
 });
