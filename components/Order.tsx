@@ -2,7 +2,7 @@ import { router } from "expo-router";
 import { PropsWithChildren } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
-export function Order({ children, id, title, description }: PropsWithChildren & { id: string, title: string, description: string }) {
+export function Order({ children, id, title, description }: PropsWithChildren & { id: number, title: string, description: string }) {
 	return (
 		<View style={styles.container}>
 			<Pressable

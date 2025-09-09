@@ -1,9 +1,18 @@
+import * as schema from '@/db/schema';
+import { drizzle } from 'drizzle-orm/expo-sqlite';
+import { router } from "expo-router";
+import { useSQLiteContext } from 'expo-sqlite';
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+
 
 export default function CreateScreen() {
     const [title, onChangeTitle] = useState('')
     const [description, onChangeDescription] = useState('')
+
+    const db = useSQLiteContext();
+    const drizzleDb = drizzle(db, { schema })
+
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Create new order</Text>
@@ -30,7 +39,15 @@ export default function CreateScreen() {
                     },
                     styles.pressable
                 ]}
-                onPress={() => console.log("Create")}>
+                onPress={async () => {
+                    if (title === '' || description === '') return;
+                    await drizzleDb.insert(schema.ordersTable).values({
+                        title,
+                        description
+                    }).then(() => {
+                        router.back()
+                    })
+                }}>
                 <Text style={styles.pressableText}>Create</Text>
             </Pressable>
         </View>

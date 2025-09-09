@@ -1,66 +1,27 @@
 import { Order } from "@/components/Order";
+import * as schema from '@/db/schema';
+import { drizzle } from "drizzle-orm/expo-sqlite";
 import { useRouter } from "expo-router";
-import { useState } from "react";
+import { useSQLiteContext } from "expo-sqlite";
+import { useEffect, useState } from "react";
 import { FlatList, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
-
-const DATA = [
-	{
-		id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-		title: 'First Item',
-		description: 'Description',
-	},
-	{
-		id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-		title: 'Second Item',
-		description: 'Sed quis consequuntur ab iusto quia est ex. Quo ea et vitae facilis sit est dolorum. Eveniet molestias enim occaecati saepe sit inventore laudantium. Molestiae porro voluptatem aut molestias porro nihil nisi.',
-	},
-	{
-		id: '58694a0f-3da1-471f-bd96-145571e29d71',
-		title: 'Third Item',
-		description: 'Description',
-	},
-	{
-		id: '58694a0f-3da1-471f-bd96-145571e29d73',
-		title: 'Third Item',
-		description: 'Description',
-	},
-	{
-		id: '58694a0f-3da1-471f-bd96-145571e29d472',
-		title: 'Third Item',
-		description: 'Description',
-	},
-	{
-		id: '58694a0f-3da1-471f-bd96-145571e29d752',
-		title: 'Third Item',
-		description: 'Description',
-	},
-	{
-		id: '58694a0f-3da1-471f-bd96-145571e29443d72',
-		title: 'Third Item',
-		description: 'Description',
-	},
-	{
-		id: '58694a0f-3da1-471f-bd96-145571e29754d72',
-		title: 'Third Item',
-		description: 'Description',
-	},
-	{
-		id: '58694a0f-3da1-471f-bd96-243145571e29d72',
-		title: 'Third Item',
-		description: 'Description',
-	},
-	{
-		id: '58694a0f-3da1-471f-bd96-123445571e29d72',
-		title: 'Third Item',
-		description: 'Description',
-	},
-];
 
 export default function Index() {
 	const router = useRouter();
 	const [search, onChangeSearch] = useState('')
+	const [items, setItems] = useState<typeof schema.ordersTable.$inferSelect[] | null>(null);
 
-	const DATA_FILTERED = DATA.filter(post =>
+	const db = useSQLiteContext();
+	const drizzleDb = drizzle(db, { schema })
+
+	useEffect(() => {
+		(async () => {
+			const res = await drizzleDb.select().from(schema.ordersTable)
+			setItems(res);
+		})();
+	})
+	
+	const DATA_FILTERED = items?.filter(post =>
 		post.title.toLowerCase().includes(search.toLowerCase()),
 	);
 
@@ -76,7 +37,7 @@ export default function Index() {
 			<FlatList
 				data={DATA_FILTERED}
 				renderItem={({ item }) => <Order id={item.id} title={item.title} description={item.description} />}
-				keyExtractor={item => item.id}
+				keyExtractor={item => item.id.toString()}
 			/>
 
 

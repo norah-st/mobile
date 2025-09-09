@@ -1,0 +1,54 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "id": "8bfd8a30-f776-4b18-aad2-91ef52ba45fd",
+  "prevId": "802a3625-c53e-4e05-9fcb-239cfb02b076",
+  "tables": {
+    "work_orders": {
+      "name": "work_orders",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    }
+  },
+  "views": {},
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {
+      "\"users_table\"": "\"work_orders\""
+    },
+    "columns": {
+      "\"work_orders\".\"name\"": "\"work_orders\".\"title\"",
+      "\"work_orders\".\"age\"": "\"work_orders\".\"description\""
+    }
+  },
+  "internal": {
+    "indexes": {}
+  }
+}
