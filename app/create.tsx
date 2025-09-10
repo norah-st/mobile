@@ -3,7 +3,7 @@ import { drizzle } from 'drizzle-orm/expo-sqlite';
 import { router } from "expo-router";
 import { useSQLiteContext } from 'expo-sqlite';
 import { useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Pressable, StyleSheet, Text, TextInput, ToastAndroid, View } from 'react-native';
 
 
 export default function CreateScreen() {
@@ -40,7 +40,10 @@ export default function CreateScreen() {
                     styles.pressable
                 ]}
                 onPress={async () => {
-                    if (title === '' || description === '') return;
+                    if (title === '' || description === '') {
+                        ToastAndroid.show('Empty fields', ToastAndroid.SHORT)
+                        return;
+                    }
                     await drizzleDb.insert(schema.ordersTable).values({
                         title,
                         description

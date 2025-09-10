@@ -23,16 +23,17 @@ export default function RootLayout() {
 				<Stack
 					screenOptions={{
 						headerStyle: {
-							backgroundColor: '#f4511e'
+							backgroundColor: '#7a2ab7ff'
 						},
 						headerTintColor: '#fff',
 						headerTitleStyle: {
 							fontWeight: 'bold'
 						},
 					}}>
-					<Stack.Screen name="index" />
-					<Stack.Screen name="create" />
-					<Stack.Screen name="details/[id]" />
+					<Stack.Screen name="index" options={{ title: 'Bienvenida' }} />
+					<Stack.Screen name="main" options={{ title: 'Página principal' }} />
+					<Stack.Screen name="create" options={{ title: 'Crear nueva orden' }} />
+					<Stack.Screen name="details/[id]" options={{ title: 'Detalles de orden' }} />
 				</Stack>
 			</SQLiteProvider>
 		</Suspense>
