@@ -28,13 +28,21 @@ export default function DetailsScreen() {
 		})();
 	})
 
+	if (item === null || item === undefined) {
+		return (
+			<View>
+				<Text>Empty</Text>
+			</View>
+		);
+	}
+
 	return (
 		<View style={styles.container}>
 			<Text>Details for {id}</Text>
 			<Text>Database fetch info</Text>
-			<Text>id: {item?.id}</Text>
-			<Text>title: {item?.title}</Text>
-			<Text>description: {item?.description}</Text>
+			<Text>id: {item.id}</Text>
+			<Text>title: {item.title}</Text>
+			<Text>description: {item.description}</Text>
 			<TextInput
 				value={description}
 				onChangeText={setDescription}
@@ -77,8 +85,8 @@ export default function DetailsScreen() {
 				}
 			>
 
-			<Text style={styles.pressableText}>Eliminar</Text>
-		</Pressable>
+				<Text style={styles.pressableText}>Eliminar</Text>
+			</Pressable>
 		</View >
 	);
 }
