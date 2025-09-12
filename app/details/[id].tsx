@@ -38,11 +38,11 @@ export default function DetailsScreen() {
 
 	return (
 		<View style={styles.container}>
-			<Text>Details for {id}</Text>
-			<Text>Database fetch info</Text>
+			<Text>Detalles para orden {id}</Text>
+			<Text>Información recolectada en la base de datos</Text>
 			<Text>id: {item.id}</Text>
-			<Text>title: {item.title}</Text>
-			<Text>description: {item.description}</Text>
+			<Text>Título: {item.title}</Text>
+			<Text>Descripción: {item.description}</Text>
 			<TextInput
 				value={description}
 				onChangeText={setDescription}

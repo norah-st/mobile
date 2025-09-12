@@ -5,7 +5,7 @@ export default function Index() {
     const router = useRouter();  
     return (
         <View style={styles.container}>
-            <Text>Hello World</Text>
+            <Text style= {styles.text}>Bienvenido!</Text>
             <Pressable
                 style={({ pressed }) => [
                     {
@@ -23,7 +23,9 @@ export default function Index() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: ''
+        backgroundColor: '',
+        alignContent: 'center',
+        justifyContent: 'center'
     },
     pressable: {
         marginBottom: 36,
@@ -45,4 +47,9 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 10,
     },
+    text: {
+        fontSize: 32,
+        alignItems: 'center',
+        marginHorizontal: 127
+    }
 });
