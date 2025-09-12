@@ -41,7 +41,11 @@
       "typedRoutes": true
     },
     "extra": {
-      "router": {}
-    }
+      "router": {},
+      "eas": {
+        "projectId": "f4e5ca45-78d6-4ad6-aa11-bbeae9d36762"
+      }
+    },
+    "owner": "norah486"
   }
 }
