@@ -15,21 +15,21 @@ export default function CreateScreen() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Create new order</Text>
-            <Text style={styles.label}>Title</Text>
+            <Text style={styles.title}>Crear nueva orden</Text>
+            <Text style={styles.label}>Titulo</Text>
             <TextInput
                 style={styles.input}
                 onChangeText={onChangeTitle}
                 value={title}
-                placeholder="Title for the new order"
+                placeholder="Titulo de la nueva orden"
             />
 
-            <Text style={styles.label}>Description</Text>
+            <Text style={styles.label}>Descripción</Text>
             <TextInput
                 style={styles.input}
                 onChangeText={onChangeDescription}
                 value={description}
-                placeholder="Description of the order"
+                placeholder="Descripción de la nueva orden"
             />
 
             <Pressable
@@ -41,7 +41,7 @@ export default function CreateScreen() {
                 ]}
                 onPress={async () => {
                     if (title === '' || description === '') {
-                        ToastAndroid.show('Empty fields', ToastAndroid.SHORT)
+                        ToastAndroid.show('Campos Vacios', ToastAndroid.SHORT)
                         return;
                     }
                     await drizzleDb.insert(schema.ordersTable).values({
@@ -51,7 +51,7 @@ export default function CreateScreen() {
                         router.back()
                     })
                 }}>
-                <Text style={styles.pressableText}>Create</Text>
+                <Text style={styles.pressableText}>Crear</Text>
             </Pressable>
         </View>
     );

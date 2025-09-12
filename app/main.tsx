@@ -31,7 +31,7 @@ export default function Index() {
 				value={search}
 				onChangeText={onChangeSearch}
 				style={styles.input}
-				placeholder="Search"
+				placeholder="Buscar"
 			/>
 
 			<FlatList
@@ -49,7 +49,7 @@ export default function Index() {
 					styles.pressable
 				]}
 				onPress={() => router.navigate('/create')}>
-				<Text style={styles.pressableText}>Create new order</Text>
+				<Text style={styles.pressableText}>Crear nueva orden</Text>
 			</Pressable>
 		</View>
 	);
